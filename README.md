@@ -23,10 +23,10 @@ The "Hello World" of computer graphics, the Utah Teapot, composed of 530 vertex-
 #### Gouraud-shaded
 ![alt tag](https://raw.githubusercontent.com/r-c-s/Feyn/master/screenshots/1641852915667.png)
 
-#### Textured (porcelain)
+#### Textured (perspective-correct)
 ![alt tag](https://raw.githubusercontent.com/r-c-s/Feyn/master/screenshots/1641852918255.png)
 
 #### Lit by multiple colored light sources
 ![alt tag](https://raw.githubusercontent.com/r-c-s/Feyn/master/screenshots/1641852921144.png)
 
-Coordinates taken from http://people.sc.fsu.edu/~jburkardt/data/obj/obj.html
+Teapot coordinates taken from http://people.sc.fsu.edu/~jburkardt/data/obj/obj.html
