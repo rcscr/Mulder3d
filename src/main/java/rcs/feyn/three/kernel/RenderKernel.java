@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import rcs.feyn.math.Vector3d;
@@ -34,10 +32,8 @@ public final class RenderKernel {
             : 0;
   };
 
-  private static final int NUM_THREADS = 4;
-  
-  private final ExecutorService executorService = Executors.newFixedThreadPool(NUM_THREADS);
-  
+  private final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
+
   private final Collection<Patch3d> alphaBuffer = new ArrayList<>();
   
   private final ObjectRepository repository;
@@ -52,16 +48,9 @@ public final class RenderKernel {
     var viewMatrix = view.getViewSpaceMatrix();
     var projMatrix = view.getPerspectiveProjectionMatrix();
     var viewPortMatrix = view.getViewPortMatrix();
-    
-    AtomicInteger counter = new AtomicInteger();
-    Map<Integer, List<Patch3d>> patchesPerThread = repository.patches()
-        .collect(Collectors.groupingBy(x -> counter.incrementAndGet() % NUM_THREADS));    
-    
-    List<Future<?>> futures = new ArrayList<>(patchesPerThread.keySet().size());
 
-    for (List<Patch3d> patchBatch : patchesPerThread.values()) {
-      var renderProcess = executorService.submit(() -> {
-        for (Patch3d patch : patchBatch){
+    List<Future<?>> futures = repository.patches()
+        .map(patch -> executorService.submit(() -> {
           if (patch.isTransparent()) {
             synchronized(alphaBuffer) {
               alphaBuffer.add(patch);
@@ -69,12 +58,9 @@ public final class RenderKernel {
           } else {
             patch.render(graphics, viewMatrix, projMatrix, viewPortMatrix);
           }
-        }
-      });
-      
-      futures.add(renderProcess);
-    }
-    
+        }))
+        .collect(Collectors.toList());
+
     for (Future<?> future : futures) {
       try {
         future.get();
