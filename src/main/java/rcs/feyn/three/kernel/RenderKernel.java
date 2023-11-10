@@ -25,11 +25,7 @@ public final class RenderKernel {
     double aDepth = a.getCenter().distanceSquared(cameraPos);
     double bDepth = b.getCenter().distanceSquared(cameraPos);
     
-    return aDepth < bDepth 
-        ?  1
-        : aDepth > bDepth 
-            ? -1 
-            : 0;
+    return Double.compare(bDepth, aDepth);
   };
 
   private final ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
