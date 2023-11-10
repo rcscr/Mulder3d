@@ -75,21 +75,20 @@ public class Model3dTexturedFace extends Model3dFace implements AlphaEnabled {
     }
     
     Polygon3dPatch newPatch;
-    if (vertices instanceof Model3dGouraudVertices && options.isEnabled(Option.gouraudShaded) && options.isEnabled(Option.textured)) {
+    if (vertices instanceof Model3dGouraudVertices mgv && options.isEnabled(Option.gouraudShaded) && options.isEnabled(Option.textured)) {
       newPatch = new GouraudTexturedPolygon3dPatch(
           lastVertices, 
-          getVertices(((Model3dGouraudVertices) vertices).getNormals()),
+          getVertices(mgv.getNormals()),
           textureData,
           alpha,
           zoom,
           options);
-    } else if (vertices instanceof Model3dGouraudVertices && options.isEnabled(Option.gouraudShaded)) { 
+    } else if (vertices instanceof Model3dGouraudVertices mgv && options.isEnabled(Option.gouraudShaded)) {
       newPatch = new GouraudPolygon3dPatch(
           lastVertices, 
-          getVertices(((Model3dGouraudVertices) vertices).getNormals()),
+          getVertices(mgv.getNormals()),
           color,
           options);
-      
     } else if (options.isEnabled(Option.textured)) {
       newPatch = new TexturedPolygon3dPatch(
           lastVertices, 

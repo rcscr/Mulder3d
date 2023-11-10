@@ -53,10 +53,10 @@ public class Model3dFace extends AbstractColorable {
     }
     
     Polygon3dPatch newPatch;
-    if (vertices instanceof Model3dGouraudVertices && options.isEnabled(Option.gouraudShaded)) {      
+    if (vertices instanceof Model3dGouraudVertices mgv && options.isEnabled(Option.gouraudShaded)) {
       newPatch = new GouraudPolygon3dPatch(
           lastVertices, 
-          getVertices(((Model3dGouraudVertices) vertices).getNormals()), 
+          getVertices(mgv.getNormals()),
           color,
           options);
     } else {
