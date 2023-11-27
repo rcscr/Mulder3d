@@ -1,4 +1,4 @@
-## Feyn
+## Feyn3d
 
 A polygon-based real-time 3D graphics engine in Java
 
