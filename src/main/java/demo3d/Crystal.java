@@ -20,7 +20,7 @@ public class Crystal extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L;
 
-  private Model3d crystal = Model3dFactory
+  private final Model3d crystal = Model3dFactory
       .icosphere(1, 2)
       .setTextureData(
           Model3dUtils.getImageData(System.getProperty("user.dir") + "/textures/crystaltexture.jpg"),

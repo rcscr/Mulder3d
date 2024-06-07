@@ -38,18 +38,20 @@ public class SpaceShooter extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L; 
   
-  private final TextureRaster rockTexture = Model3dUtils.getImageData(System.getProperty("user.dir") + "/textures/rock.jpg");
+  private final TextureRaster rockTexture =
+          Model3dUtils.getImageData(System.getProperty("user.dir") + "/textures/rock.jpg");
   
-  private XORShift xorShift = XORShift.getInstance();
+  private final XORShift xorShift = XORShift.getInstance();
 
-  private FeynCollection<Point3d> stars = new FeynArray<>(10_000);
-  private FeynCollection<CollidableModel3d> rocks = new FeynLinkedList<>();
-  private FeynCollection<Model3d> shards = new FeynLinkedList<>();
-  private FeynCollection<CollidableModel3d> projectiles = new FeynLinkedList<>();
+  private final FeynCollection<Point3d> stars = new FeynArray<>(10_000);
+  private final FeynCollection<CollidableModel3d> rocks = new FeynLinkedList<>();
+  private final FeynCollection<Model3d> shards = new FeynLinkedList<>();
+  private final FeynCollection<CollidableModel3d> projectiles = new FeynLinkedList<>();
   
-  private AnimationTimer addRockTimer = new AnimationTimer(this::addNewRocks, 500);
+  private final AnimationTimer addRockTimer = new AnimationTimer(this::addNewRocks, 500);
   
-  private RockAndProjectileCollisionHandler rockAndProjectileCollisionHandler = new RockAndProjectileCollisionHandler();
+  private final RockAndProjectileCollisionHandler rockAndProjectileCollisionHandler =
+          new RockAndProjectileCollisionHandler();
   
   @Override
   public void initialize() {

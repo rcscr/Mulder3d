@@ -18,7 +18,7 @@ public class Vortex extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L; 
   
-  private Curve3d curve = new Curve3d(
+  private final Curve3d curve = new Curve3d(
       (r, t) -> { 
         r = 2*(r-0.5);
         double radius = Math.sqrt(1 - r*r*r);
@@ -27,7 +27,7 @@ public class Vortex extends Demo3d {
                             -r); 
       },
       (r, t, z) -> {         
-        return new FeynColor((int)(TrigLookUp.cos(r*t*PI + t)*255), 
+        return new FeynColor((int)(TrigLookUp.cos(r*t*PI + t)*255),
                              (int)(TrigLookUp.cos(r*t*HALF_PI + t)*255), 
                              (int)(TrigLookUp.cos(r*t*QUARTER_PI + t)*255), 
                              255);

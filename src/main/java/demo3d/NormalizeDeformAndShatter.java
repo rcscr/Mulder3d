@@ -23,11 +23,12 @@ public class NormalizeDeformAndShatter extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L;
   
-  private TextureRaster texture = Model3dUtils.getImageData(System.getProperty("user.dir") + "/textures/texture5.jpg");
+  private final TextureRaster texture =
+          Model3dUtils.getImageData(System.getProperty("user.dir") + "/textures/texture5.jpg");
   
-  private Line3d x = new Line3d(Vector3d.NEG_X_AXIS, Vector3d.X_AXIS);
-  private Line3d y = new Line3d(Vector3d.NEG_Y_AXIS, Vector3d.Y_AXIS);
-  private Line3d z = new Line3d(Vector3d.NEG_Z_AXIS, Vector3d.Z_AXIS);
+  private final Line3d x = new Line3d(Vector3d.NEG_X_AXIS, Vector3d.X_AXIS);
+  private final Line3d y = new Line3d(Vector3d.NEG_Y_AXIS, Vector3d.Y_AXIS);
+  private final Line3d z = new Line3d(Vector3d.NEG_Z_AXIS, Vector3d.Z_AXIS);
 
   private Model3d[] objs;
   

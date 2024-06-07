@@ -18,11 +18,11 @@ public class PineForest extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L;
   
-  private Grid ground = new Grid(
+  private final Grid ground = new Grid(
       10, 10, 1,
       Model3dUtils.getImageData(System.getProperty("user.dir") + "/textures/forest-ground.jpg"));
 
-  private PineTree[] trees = new PineTree[10];
+  private final PineTree[] trees = new PineTree[10];
   
   @Override
   protected void initialize() {

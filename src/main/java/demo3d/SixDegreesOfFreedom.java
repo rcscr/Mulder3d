@@ -25,19 +25,19 @@ public class SixDegreesOfFreedom extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L; 
   
-  private Model3d obj = Model3dFactory.dodecahedron(0.25).setColor(FeynColor.white).build();
+  private final Model3d obj = Model3dFactory.dodecahedron(0.25).setColor(FeynColor.white).build();
   
-  private Line3d up = new Line3d(Vector3d.ZERO, obj.getUpVector());
-  private Line3d sd = new Line3d(Vector3d.ZERO, obj.getSideVector());
-  private Line3d fw = new Line3d(Vector3d.ZERO, obj.getForwardVector());
+  private final Line3d up = new Line3d(Vector3d.ZERO, obj.getUpVector());
+  private final Line3d sd = new Line3d(Vector3d.ZERO, obj.getSideVector());
+  private final Line3d fw = new Line3d(Vector3d.ZERO, obj.getForwardVector());
   
-  private Line3d x = new Line3d(Vector3d.NEG_X_AXIS, Vector3d.X_AXIS);
-  private Line3d y = new Line3d(Vector3d.NEG_Y_AXIS, Vector3d.Y_AXIS);
-  private Line3d z = new Line3d(Vector3d.NEG_Z_AXIS, Vector3d.Z_AXIS);
+  private final Line3d x = new Line3d(Vector3d.NEG_X_AXIS, Vector3d.X_AXIS);
+  private final Line3d y = new Line3d(Vector3d.NEG_Y_AXIS, Vector3d.Y_AXIS);
+  private final Line3d z = new Line3d(Vector3d.NEG_Z_AXIS, Vector3d.Z_AXIS);
 
-  private Grid xyPlane = new Grid(2, 2, 2);
-  private Grid xzPlane = new Grid(2, 2, 2); 
-  private Grid zyPlane = new Grid(2, 2, 2); 
+  private final Grid xyPlane = new Grid(2, 2, 2);
+  private final Grid xzPlane = new Grid(2, 2, 2);
+  private final Grid zyPlane = new Grid(2, 2, 2);
 
   private final double angularVelocity = 2 * MathConsts.DEGREES_TO_RADIANS;
 

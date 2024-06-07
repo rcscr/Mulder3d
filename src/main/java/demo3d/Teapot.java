@@ -25,9 +25,9 @@ public class Teapot extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1;
   
-  private String teapotObjFilePath = System.getProperty("user.dir") + "/objfiles/teapot.obj";
+  private final String teapotObjFilePath = System.getProperty("user.dir") + "/objfiles/teapot.obj";
 
-  private Model3d teapot = new Model3dBuilder()
+  private final Model3d teapot = new Model3dBuilder()
       .fromObjFile(teapotObjFilePath)
       .setTextureData(Model3dUtils.getImageData(
           System.getProperty("user.dir") + "/textures/tile.jpg"),

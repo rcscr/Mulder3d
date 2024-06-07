@@ -34,7 +34,7 @@ public class Gumballs extends Demo3d {
   
   private static final int NUM_BALLS = 100;
 
-  private FeynCollection<CollidableModel3d> spheres = new FeynArray<>(NUM_BALLS); 
+  private final FeynCollection<CollidableModel3d> spheres = new FeynArray<>(NUM_BALLS);
  
   private final CollidableModel3d cube = (CollidableModel3d) Model3dFactory
       .cube(2)

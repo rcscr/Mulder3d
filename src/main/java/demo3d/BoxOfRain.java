@@ -22,14 +22,14 @@ public class BoxOfRain extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L;
   
-  private XORShift xorShift = XORShift.getInstance();
+  private final XORShift xorShift = XORShift.getInstance();
   
   // todo: implement checking collision against a Plane3d
-  private Grid ground = new Grid(10, 10);
+  private final Grid ground = new Grid(10, 10);
   
-  private FeynCollection<Line3d> raindrops = new FeynLinkedList<>();
-  private FeynCollection<Polygon3d> waves = new FeynLinkedList<>();
-  private FeynCollection<Model3d> splashes = new FeynLinkedList<>();
+  private final FeynCollection<Line3d> raindrops = new FeynLinkedList<>();
+  private final FeynCollection<Polygon3d> waves = new FeynLinkedList<>();
+  private final FeynCollection<Model3d> splashes = new FeynLinkedList<>();
   
   public BoxOfRain() {
     super();

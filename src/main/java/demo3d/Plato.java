@@ -23,30 +23,30 @@ public class Plato extends Demo3d {
   @Serial
   private static final long serialVersionUID = 1L; 
   
-  private TextureRaster texture = Model3dUtils
+  private final TextureRaster texture = Model3dUtils
       .getImageData(System.getProperty("user.dir") + "/textures/marble.jpeg");
   
-  private Model3d tetrahedron = Model3dFactory.tetrahedron(1)
+  private final Model3d tetrahedron = Model3dFactory.tetrahedron(1)
       .setTextureData(texture)
       .build();
   
-  private Model3d octahedron = Model3dFactory.octahedron(1)
+  private final Model3d octahedron = Model3dFactory.octahedron(1)
       .setTextureData(texture)
       .build();
   
-  private Model3d hexahedron = Model3dFactory.hexahedron(1)
+  private final Model3d hexahedron = Model3dFactory.hexahedron(1)
       .setTextureData(texture)
       .build();
   
-  private Model3d icosahedron  = Model3dFactory.icosahedron(1)
+  private final Model3d icosahedron  = Model3dFactory.icosahedron(1)
       .setTextureData(texture)
       .build();
   
-  private Model3d dodecahedron = Model3dFactory.dodecahedron(1)
+  private final Model3d dodecahedron = Model3dFactory.dodecahedron(1)
       .setTextureData(texture)
       .build();
   
-  private Model3d[] solids = new Model3d[] {
+  private final Model3d[] solids = new Model3d[] {
     tetrahedron,
     octahedron,  
     hexahedron,  
