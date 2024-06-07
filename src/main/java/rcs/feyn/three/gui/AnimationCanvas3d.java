@@ -23,7 +23,7 @@ public abstract class AnimationCanvas3d extends AbstractAnimationCanvas {
 
   @Override
   protected final void render(Graphics3d graphics) {
-    renderKernel.renderAll((Graphics3d) graphics); 
+    renderKernel.renderAll(graphics);
   }
 
   @Override
