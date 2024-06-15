@@ -3,20 +3,20 @@ package demo3d;
 import java.io.Serial;
 import java.util.Set;
 
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.math.TrigLookUp;
-import rcs.feyn.math.Vector3d;
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dFactory;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.entities.primitives.Line3d;
-import rcs.feyn.three.gfx.TextureRaster;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.VariableIntensityLightSource3d;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.math.TrigLookUp;
+import rcs.mulder.math.Vector3d;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dFactory;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.entities.primitives.Line3d;
+import rcs.mulder.three.gfx.TextureRaster;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.VariableIntensityLightSource3d;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.*;
+import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class NormalizeDeformAndShatter extends Demo3d {
 
@@ -38,7 +38,7 @@ public class NormalizeDeformAndShatter extends Demo3d {
   protected void initialize() {
     super.initialize(); 
     
-    setBackgroundColor(FeynColor.bisque);
+    setBackgroundColor(MulderColor.bisque);
     
     Model3d obj = Model3dFactory
         .dodecahedron(0.6)
@@ -61,21 +61,21 @@ public class NormalizeDeformAndShatter extends Demo3d {
     objs = Model3dUtils.partition2d(obj, 0.2);
     
     for (Model3d model : objs) {
-      FeynRuntime.getRepository().add(model);
+      MulderRuntime.getRepository().add(model);
     }
     
-    x.setColor(FeynColor.red);
-    y.setColor(FeynColor.green);
-    z.setColor(FeynColor.blue);
+    x.setColor(MulderColor.red);
+    y.setColor(MulderColor.green);
+    z.setColor(MulderColor.blue);
     
-    FeynRuntime.getRepository().add(x);
-    FeynRuntime.getRepository().add(y);
-    FeynRuntime.getRepository().add(z);
+    MulderRuntime.getRepository().add(x);
+    MulderRuntime.getRepository().add(y);
+    MulderRuntime.getRepository().add(z);
 
     camera.translate(0, 0, 2);
     
-    FeynRuntime.addDiffuseLightSource(new VariableIntensityLightSource3d(2)); 
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(0.4));
+    MulderRuntime.addDiffuseLightSource(new VariableIntensityLightSource3d(2));
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(0.4));
     
     wzc.setAmount(0.2);
   }
@@ -88,7 +88,7 @@ public class NormalizeDeformAndShatter extends Demo3d {
   @Override
   public void runningLoop() {
     controlCamera();
-    FeynRuntime.getDiffuseLightSources()[0].setPosition(camera.getPosition()); 
+    MulderRuntime.getDiffuseLightSources()[0].setPosition(camera.getPosition());
     shatterAnimation.run();
   }
   
@@ -104,7 +104,7 @@ public class NormalizeDeformAndShatter extends Demo3d {
   }
 
   public static void main(String[] args) {
-    FeynFrame frame = new FeynFrame(800, 800, "Shatter Demo", true, false);
+    MulderFrame frame = new MulderFrame(800, 800, "Shatter Demo", true, false);
     Demo3d demo = new NormalizeDeformAndShatter();
     frame.add("Center", demo);
     frame.setVisible(true);

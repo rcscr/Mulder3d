@@ -1,24 +1,24 @@
-module feyn3d {
+module mulder3d {
     requires java.desktop;
 
-    exports rcs.feyn.color;
-    exports rcs.feyn.event;
-    exports rcs.feyn.gui;
-    exports rcs.feyn.math;
-    exports rcs.feyn.physics;
-    exports rcs.feyn.utils.struct;
-    exports rcs.feyn.three.anim;
-    exports rcs.feyn.three.collision;
-    exports rcs.feyn.three.geo;
-    exports rcs.feyn.three.gfx;
-    exports rcs.feyn.three.kernel;
-    exports rcs.feyn.three.optics;
-    exports rcs.feyn.three.entities;
-    exports rcs.feyn.three.entities.models;
-    exports rcs.feyn.three.render;
-    exports rcs.feyn.three.render.patches;
-    exports rcs.feyn.three.entities.primitives;
-    exports rcs.feyn.three.render.renderers;
-    exports rcs.feyn.three.view;
-    exports rcs.feyn.utils;
+    exports rcs.mulder.color;
+    exports rcs.mulder.event;
+    exports rcs.mulder.gui;
+    exports rcs.mulder.math;
+    exports rcs.mulder.physics;
+    exports rcs.mulder.utils.struct;
+    exports rcs.mulder.three.anim;
+    exports rcs.mulder.three.collision;
+    exports rcs.mulder.three.geo;
+    exports rcs.mulder.three.gfx;
+    exports rcs.mulder.three.kernel;
+    exports rcs.mulder.three.optics;
+    exports rcs.mulder.three.entities;
+    exports rcs.mulder.three.entities.models;
+    exports rcs.mulder.three.render;
+    exports rcs.mulder.three.render.patches;
+    exports rcs.mulder.three.entities.primitives;
+    exports rcs.mulder.three.render.renderers;
+    exports rcs.mulder.three.view;
+    exports rcs.mulder.utils;
 }

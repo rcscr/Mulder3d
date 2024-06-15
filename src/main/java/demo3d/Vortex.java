@@ -1,15 +1,15 @@
 package demo3d;
 
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.three.anim.Curve3d;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.math.TrigLookUp;
-import rcs.feyn.math.Vector3d;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.three.anim.Curve3d;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.math.TrigLookUp;
+import rcs.mulder.math.Vector3d;
 
-import static rcs.feyn.math.MathConsts.PI;
-import static rcs.feyn.math.MathConsts.HALF_PI;
-import static rcs.feyn.math.MathConsts.QUARTER_PI;
+import static rcs.mulder.math.MathConsts.PI;
+import static rcs.mulder.math.MathConsts.HALF_PI;
+import static rcs.mulder.math.MathConsts.QUARTER_PI;
 
 import java.io.Serial;
 
@@ -27,7 +27,7 @@ public class Vortex extends Demo3d {
                             -r); 
       },
       (r, t, z) -> {         
-        return new FeynColor((int)(TrigLookUp.cos(r*t*PI + t)*255),
+        return new MulderColor((int)(TrigLookUp.cos(r*t*PI + t)*255),
                              (int)(TrigLookUp.cos(r*t*HALF_PI + t)*255), 
                              (int)(TrigLookUp.cos(r*t*QUARTER_PI + t)*255), 
                              255);
@@ -43,7 +43,7 @@ public class Vortex extends Demo3d {
     
     wzc.setAmount(0.2);
     
-    FeynRuntime.getRepository().add(curve);
+    MulderRuntime.getRepository().add(curve);
     
     camera.translate(0, 0, 3);
   }
@@ -60,7 +60,7 @@ public class Vortex extends Demo3d {
   }
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(800, 800, "Vortex", true, false); 
+    var frame = new MulderFrame(800, 800, "Vortex", true, false);
     var demo = new Vortex(); 
     frame.add("Center", demo);
     frame.setVisible(true);

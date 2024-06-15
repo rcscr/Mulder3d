@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>rcs</groupId>
-	<artifactId>Feyn3d</artifactId>
+	<artifactId>Mulder3d</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 

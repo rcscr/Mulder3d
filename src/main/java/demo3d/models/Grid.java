@@ -1,15 +1,15 @@
 package demo3d.models;
 
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dFace;
-import rcs.feyn.three.entities.models.Model3dTexturedFace;
-import rcs.feyn.three.entities.models.Model3dVertices;
-import rcs.feyn.three.gfx.TextureRaster;
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.math.MathUtils;
-import rcs.feyn.math.Vector3d;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dFace;
+import rcs.mulder.three.entities.models.Model3dTexturedFace;
+import rcs.mulder.three.entities.models.Model3dVertices;
+import rcs.mulder.three.gfx.TextureRaster;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.math.MathUtils;
+import rcs.mulder.math.Vector3d;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.*;
+import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class Grid extends Model3d {
   
@@ -48,7 +48,7 @@ public class Grid extends Model3d {
 
     for (int i = 0, j = 0; i < vertices.getVertices().length - count - 2; i++) {
       if ((i+1) % (count+1) != 0) {
-        faces[j] = new Model3dFace(new int[]{i, i+1, i+count+2, i+count+1}, FeynColor.black); 
+        faces[j] = new Model3dFace(new int[]{i, i+1, i+count+2, i+count+1}, MulderColor.black);
         faces[j].getRenderOptions().disable(cullIfBackface);
         faces[j].getRenderOptions().disable(flatShaded);
         j++;

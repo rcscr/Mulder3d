@@ -4,26 +4,26 @@ import java.io.Serial;
 import java.util.Set;
 
 import demo3d.models.Grid;
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.math.MathConsts;
-import rcs.feyn.math.MathUtils;
-import rcs.feyn.math.Vector3d;
-import rcs.feyn.three.entities.Rotation3d;
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dFace;
-import rcs.feyn.three.entities.models.Model3dFactory;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.gfx.TextureRaster;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.ConstantLightSource3d;
-import rcs.feyn.utils.AnimationTimer;
-import rcs.feyn.utils.XORShift;
-import rcs.feyn.utils.struct.FeynCollection;
-import rcs.feyn.utils.struct.FeynLinkedList;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.math.MathConsts;
+import rcs.mulder.math.MathUtils;
+import rcs.mulder.math.Vector3d;
+import rcs.mulder.three.entities.Rotation3d;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dFace;
+import rcs.mulder.three.entities.models.Model3dFactory;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.gfx.TextureRaster;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.ConstantLightSource3d;
+import rcs.mulder.utils.AnimationTimer;
+import rcs.mulder.utils.XORShift;
+import rcs.mulder.utils.struct.MulderCollection;
+import rcs.mulder.utils.struct.MulderLinkedList;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.*;
+import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class FallingRocks extends Demo3d {
 
@@ -38,8 +38,8 @@ public class FallingRocks extends Demo3d {
   
   private final Grid ground = new Grid(10, 10, 10);
   
-  private final FeynCollection<Model3d> rocks = new FeynLinkedList<>();
-  private final FeynCollection<Model3d> shards = new FeynLinkedList<>();
+  private final MulderCollection<Model3d> rocks = new MulderLinkedList<>();
+  private final MulderCollection<Model3d> shards = new MulderLinkedList<>();
   
   private final AnimationTimer addRockTimer = new AnimationTimer(this::addNewRock, 1000);
   
@@ -51,25 +51,25 @@ public class FallingRocks extends Demo3d {
   public void initialize() {
     super.initialize();
     
-    super.setBackgroundColor(FeynColor.white);
+    super.setBackgroundColor(MulderColor.white);
     
     camera.translate(0, 4, 10);
     
-    ground.setColorToAllFaces(FeynColor.darkOliveGreen);
+    ground.setColorToAllFaces(MulderColor.darkOliveGreen);
 
     Model3dUtils.setOptions(
         ground, 
         Set.of(meshOnly), 
         Set.of());
     
-    FeynRuntime.getRepository().add(ground);
-    FeynRuntime.getRepository().add(rocks);
-    FeynRuntime.getRepository().add(shards);
+    MulderRuntime.getRepository().add(ground);
+    MulderRuntime.getRepository().add(rocks);
+    MulderRuntime.getRepository().add(shards);
     
     var lightSource = new ConstantLightSource3d(1);
     lightSource.setPosition(5, 5, 5);
-    FeynRuntime.addDiffuseLightSource(lightSource);
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(1)); 
+    MulderRuntime.addDiffuseLightSource(lightSource);
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(1));
   }
 
   @Override
@@ -161,7 +161,7 @@ public class FallingRocks extends Demo3d {
   }
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(800, 800, "Rain Demo", true, false);
+    var frame = new MulderFrame(800, 800, "Rain Demo", true, false);
     var demo = new FallingRocks();
     frame.add("Center", demo);
     frame.setVisible(true);

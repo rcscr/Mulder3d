@@ -3,17 +3,17 @@ package demo3d;
 import java.io.Serial;
 import java.util.Set;
 
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.math.Vector3d;
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dFactory;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.ConstantLightSource3d;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.math.Vector3d;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dFactory;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.ConstantLightSource3d;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.*;
+import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class Crystal extends Demo3d {
 
@@ -32,7 +32,7 @@ public class Crystal extends Demo3d {
   protected void initialize() {
     super.initialize(); 
     
-    setBackgroundColor(FeynColor.black);
+    setBackgroundColor(MulderColor.black);
     
     Model3dUtils.setOptions(
         crystal, 
@@ -42,14 +42,14 @@ public class Crystal extends Demo3d {
     
     Model3dUtils.normalizeFacesToTriangles(crystal);
     
-    FeynRuntime.getRepository().add(crystal);
+    MulderRuntime.getRepository().add(crystal);
 
     camera.translate(0, 0, 3);
     
-    FeynRuntime.addDiffuseLightSource(new ConstantLightSource3d(1)); 
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(0.5));
+    MulderRuntime.addDiffuseLightSource(new ConstantLightSource3d(1));
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(0.5));
 
-    FeynRuntime.getDiffuseLightSources()[0].setPosition(camera.getPosition()); 
+    MulderRuntime.getDiffuseLightSources()[0].setPosition(camera.getPosition());
     wzc.setAmount(0.2);
   }
 
@@ -66,7 +66,7 @@ public class Crystal extends Demo3d {
   }
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(800, 800, "Crystal Demo", true, false);
+    var frame = new MulderFrame(800, 800, "Crystal Demo", true, false);
     var demo = new Crystal();
     frame.add("Center", demo);
     frame.setVisible(true);

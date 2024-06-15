@@ -4,28 +4,28 @@ import java.awt.event.KeyEvent;
 import java.io.Serial;
 
 import demo3d.models.Grid;
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dFace;
-import rcs.feyn.three.entities.models.Model3dFactory;
-import rcs.feyn.three.entities.primitives.Line3d;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.ConstantLightSource3d;
-import rcs.feyn.math.MathConsts;
-import rcs.feyn.math.Matrices;
-import rcs.feyn.math.Matrix44;
-import rcs.feyn.math.Vector3d;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dFace;
+import rcs.mulder.three.entities.models.Model3dFactory;
+import rcs.mulder.three.entities.primitives.Line3d;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.ConstantLightSource3d;
+import rcs.mulder.math.MathConsts;
+import rcs.mulder.math.Matrices;
+import rcs.mulder.math.Matrix44;
+import rcs.mulder.math.Vector3d;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.*;
+import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class SixDegreesOfFreedom extends Demo3d {
 
   @Serial
   private static final long serialVersionUID = 1L; 
   
-  private final Model3d obj = Model3dFactory.dodecahedron(0.25).setColor(FeynColor.white).build();
+  private final Model3d obj = Model3dFactory.dodecahedron(0.25).setColor(MulderColor.white).build();
   
   private final Line3d up = new Line3d(Vector3d.ZERO, obj.getUpVector());
   private final Line3d sd = new Line3d(Vector3d.ZERO, obj.getSideVector());
@@ -55,7 +55,7 @@ public class SixDegreesOfFreedom extends Demo3d {
   public void initialize() {
     super.initialize();
     
-    super.setBackgroundColor(FeynColor.bisque4);
+    super.setBackgroundColor(MulderColor.bisque4);
     
     obj.translate(0.5, 0.5, 0.5);
     up.translate(obj.getPosition()); 
@@ -65,40 +65,40 @@ public class SixDegreesOfFreedom extends Demo3d {
     xyPlane.rotate(Vector3d.X_AXIS, 90 * MathConsts.DEGREES_TO_RADIANS);
     zyPlane.rotate(Vector3d.Z_AXIS, 90 * MathConsts.DEGREES_TO_RADIANS);
     
-    xyPlane.setColorToAllFaces(new FeynColor(255, 255, 0, 50));  
-    xzPlane.setColorToAllFaces(new FeynColor(255, 0, 255, 50));  
-    zyPlane.setColorToAllFaces(new FeynColor(0, 255, 255, 50)); 
+    xyPlane.setColorToAllFaces(new MulderColor(255, 255, 0, 50));
+    xzPlane.setColorToAllFaces(new MulderColor(255, 0, 255, 50));
+    zyPlane.setColorToAllFaces(new MulderColor(0, 255, 255, 50));
 
-    x.setColor(FeynColor.red);
-    y.setColor(FeynColor.green);
-    z.setColor(FeynColor.blue);
+    x.setColor(MulderColor.red);
+    y.setColor(MulderColor.green);
+    z.setColor(MulderColor.blue);
     
-    obj.setColorToAllFaces(FeynColor.white);
+    obj.setColorToAllFaces(MulderColor.white);
     for (Model3dFace face : obj.getFaces()) {
       face.getRenderOptions().enable(cullIfBackface);
       face.getRenderOptions().enable(gouraudShaded);
     }
     
-    up.setColor(FeynColor.green);
-    sd.setColor(FeynColor.red);
-    fw.setColor(FeynColor.blue);
+    up.setColor(MulderColor.green);
+    sd.setColor(MulderColor.red);
+    fw.setColor(MulderColor.blue);
 
-    FeynRuntime.getRepository().add(obj);
-    FeynRuntime.getRepository().add(xyPlane);
-    FeynRuntime.getRepository().add(xzPlane);
-    FeynRuntime.getRepository().add(zyPlane);
-    FeynRuntime.getRepository().add(x);
-    FeynRuntime.getRepository().add(y);
-    FeynRuntime.getRepository().add(z);
-    FeynRuntime.getRepository().add(up);
-    FeynRuntime.getRepository().add(sd);
-    FeynRuntime.getRepository().add(fw);
+    MulderRuntime.getRepository().add(obj);
+    MulderRuntime.getRepository().add(xyPlane);
+    MulderRuntime.getRepository().add(xzPlane);
+    MulderRuntime.getRepository().add(zyPlane);
+    MulderRuntime.getRepository().add(x);
+    MulderRuntime.getRepository().add(y);
+    MulderRuntime.getRepository().add(z);
+    MulderRuntime.getRepository().add(up);
+    MulderRuntime.getRepository().add(sd);
+    MulderRuntime.getRepository().add(fw);
 
     camera.translate(0, 0, 2.5);
     
     lightSource = new ConstantLightSource3d(1);  
-    FeynRuntime.addDiffuseLightSource(lightSource); 
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(0.2));
+    MulderRuntime.addDiffuseLightSource(lightSource);
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(0.2));
     
     wzc.setAmount(0.2);
   }
@@ -148,7 +148,7 @@ public class SixDegreesOfFreedom extends Demo3d {
   } 
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(800, 800, "Rotation Demo", true, false);
+    var frame = new MulderFrame(800, 800, "Rotation Demo", true, false);
     var demo = new SixDegreesOfFreedom();
     frame.add("Center", demo);
     frame.setVisible(true);

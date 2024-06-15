@@ -4,14 +4,14 @@ import java.io.Serial;
 
 import demo3d.models.Grid;
 import demo3d.models.PineTree;
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.math.Vector3d;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.ConstantLightSource3d;
-import rcs.feyn.utils.XORShift;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.math.Vector3d;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.ConstantLightSource3d;
+import rcs.mulder.utils.XORShift;
 
 public class PineForest extends Demo3d {
 
@@ -28,9 +28,9 @@ public class PineForest extends Demo3d {
   protected void initialize() {
     super.initialize(); 
     wzc.setAmount(0.2);
-    setBackgroundColor(FeynColor.skyBlue);
+    setBackgroundColor(MulderColor.skyBlue);
     
-    FeynRuntime.getRepository().add(ground);
+    MulderRuntime.getRepository().add(ground);
     
     for (int i = 0; i < trees.length; i++) {
       Vector3d position = new Vector3d(
@@ -39,14 +39,14 @@ public class PineForest extends Demo3d {
           XORShift.getInstance().randomInt(-4, 4));
       PineTree tree = new PineTree(position, XORShift.getInstance().randomInt(5, 12));
       trees[i] = tree;
-      FeynRuntime.getRepository().add(trees[i]);
+      MulderRuntime.getRepository().add(trees[i]);
     }
 
     camera.translate(0, 4, 10);
 
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(0.8));
-    FeynRuntime.addDiffuseLightSource(new ConstantLightSource3d(1)); 
-    FeynRuntime.getDiffuseLightSources()[0].setPosition(new Vector3d(5, 10, 5)); 
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(0.8));
+    MulderRuntime.addDiffuseLightSource(new ConstantLightSource3d(1));
+    MulderRuntime.getDiffuseLightSources()[0].setPosition(new Vector3d(5, 10, 5));
   }
 
   @Override
@@ -60,7 +60,7 @@ public class PineForest extends Demo3d {
   }
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(800, 800, "Pine Demo", true, false);
+    var frame = new MulderFrame(800, 800, "Pine Demo", true, false);
     var demo = new PineForest();
     frame.add("Center", demo);
     frame.setVisible(true);

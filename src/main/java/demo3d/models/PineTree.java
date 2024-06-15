@@ -1,7 +1,7 @@
 package demo3d.models;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.gouraudShaded;
-import static rcs.feyn.three.render.RenderOptions3d.Option.flatShaded;
+import static rcs.mulder.three.render.RenderOptions3d.Option.gouraudShaded;
+import static rcs.mulder.three.render.RenderOptions3d.Option.flatShaded;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -9,16 +9,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.math.MathConsts;
-import rcs.feyn.math.Vector3d;
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dFace;
-import rcs.feyn.three.entities.models.Model3dFactory;
-import rcs.feyn.three.entities.models.Model3dTexturedFace;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.entities.models.Model3dVertices;
-import rcs.feyn.three.gfx.TextureRaster;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.math.MathConsts;
+import rcs.mulder.math.Vector3d;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dFace;
+import rcs.mulder.three.entities.models.Model3dFactory;
+import rcs.mulder.three.entities.models.Model3dTexturedFace;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.entities.models.Model3dVertices;
+import rcs.mulder.three.gfx.TextureRaster;
 
 /**
  * todo: create CompositeModel3d that encapsulates various Model3d's
@@ -36,7 +36,7 @@ public class PineTree extends Model3d {
     cone = Model3dFactory
         .pyramid(height / 100d, height, 5)
         .setPosition(position)
-        .setColor(FeynColor.saddleBrown)
+        .setColor(MulderColor.saddleBrown)
         .build();
 
     double coneCenterOffset = height - MathConsts.SQURT_2 * height / 2;

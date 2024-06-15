@@ -4,21 +4,21 @@ import java.awt.event.KeyEvent;
 import java.io.Serial;
 import java.util.Set;
 
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dBuilder;
-import rcs.feyn.three.entities.models.Model3dFace;
-import rcs.feyn.three.entities.models.Model3dTexturedFace;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.VariableIntensityLightSource3d;
-import rcs.feyn.math.MathConsts;
-import rcs.feyn.math.Matrices;
-import rcs.feyn.math.Vector3d;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dBuilder;
+import rcs.mulder.three.entities.models.Model3dFace;
+import rcs.mulder.three.entities.models.Model3dTexturedFace;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.VariableIntensityLightSource3d;
+import rcs.mulder.math.MathConsts;
+import rcs.mulder.math.Matrices;
+import rcs.mulder.math.Vector3d;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.*;
+import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class Teapot extends Demo3d { 
 
@@ -44,27 +44,27 @@ public class Teapot extends Demo3d {
     
     wzc.setAmount(0.1);
     
-    setBackgroundColor(FeynColor.white); 
+    setBackgroundColor(MulderColor.white);
     
     Model3dUtils.setOptions(
         teapot, 
         Set.of(),
         Set.of(cullIfBackface, applyLightingColor, flatShaded, gouraudShaded, textured, bothSidesShaded));
     
-    FeynRuntime.getRepository().add(teapot);
+    MulderRuntime.getRepository().add(teapot);
     
     camera.setPosition(teapot.getCenter());
     camera.translate(0, 2, 7);
     camera.rotate(Vector3d.X_AXIS, -20 * MathConsts.DEGREES_TO_RADIANS); 
 
-    var lightSourceRed = new VariableIntensityLightSource3d(10, new FeynColor(255, 0, 0));
-    var lightSourceGreen = new VariableIntensityLightSource3d(10, new FeynColor(0, 255, 0));
+    var lightSourceRed = new VariableIntensityLightSource3d(10, new MulderColor(255, 0, 0));
+    var lightSourceGreen = new VariableIntensityLightSource3d(10, new MulderColor(0, 255, 0));
     lightSourceRed.setPosition(3, 4, 5);
     lightSourceGreen.setPosition(-3, 4, 5);
-    FeynRuntime.addDiffuseLightSource(lightSourceRed);
-    FeynRuntime.addDiffuseLightSource(lightSourceGreen);
+    MulderRuntime.addDiffuseLightSource(lightSourceRed);
+    MulderRuntime.addDiffuseLightSource(lightSourceGreen);
     
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(0.3)); 
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(0.3));
   } 
 
   @Override
@@ -91,7 +91,7 @@ public class Teapot extends Demo3d {
     if (keyHasBeenPressed(KeyEvent.VK_F)) {
       inputDelay = 50;
       for (Model3dFace face : teapot.getFaces()) {
-        face.setColor(new FeynColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
+        face.setColor(new MulderColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
         face.getRenderOptions().toggle(flatShaded);
         face.getRenderOptions().disable(gouraudShaded);
         face.getRenderOptions().disable(meshOnly);
@@ -101,7 +101,7 @@ public class Teapot extends Demo3d {
     if (keyHasBeenPressed(KeyEvent.VK_G)) {
       inputDelay = 50;
       for (Model3dFace face : teapot.getFaces()) {
-        face.setColor(new FeynColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
+        face.setColor(new MulderColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
         face.getRenderOptions().toggle(gouraudShaded);
         face.getRenderOptions().disable(flatShaded);
         face.getRenderOptions().disable(meshOnly);
@@ -111,7 +111,7 @@ public class Teapot extends Demo3d {
     if (keyHasBeenPressed(KeyEvent.VK_T)) {
       inputDelay = 50;
       for (Model3dFace face : teapot.getFaces()) {
-        face.setColor(new FeynColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
+        face.setColor(new MulderColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
         face.getRenderOptions().toggle(textured);
       }
     }
@@ -119,7 +119,7 @@ public class Teapot extends Demo3d {
     if (keyHasBeenPressed(KeyEvent.VK_M)) { 
       inputDelay = 50;
       for (Model3dFace face : teapot.getFaces()) {
-        face.setColor(FeynColor.black);
+        face.setColor(MulderColor.black);
         face.getRenderOptions().toggle(meshOnly);
       }
     }
@@ -127,7 +127,7 @@ public class Teapot extends Demo3d {
     if (keyHasBeenPressed(KeyEvent.VK_C)) {
       inputDelay = 50;
       for (Model3dFace face : teapot.getFaces()) {
-        face.setColor(new FeynColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
+        face.setColor(new MulderColor((((Model3dTexturedFace) face).getTextureData().getAverageColor())));
         face.getRenderOptions().toggle(applyLightingColor);
       }
     }
@@ -139,7 +139,7 @@ public class Teapot extends Demo3d {
   }
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(800, 600, "Teapot", true, false);
+    var frame = new MulderFrame(800, 600, "Teapot", true, false);
     var demo = new Teapot();
     frame.add("Center", demo);
     frame.setVisible(true); 

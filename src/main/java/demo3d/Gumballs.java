@@ -3,29 +3,29 @@ package demo3d;
 import java.io.Serial;
 import java.util.Set;
 
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.three.collision.BoundingBox3d;
-import rcs.feyn.three.collision.BoundingSphere3d;
-import rcs.feyn.three.collision.Collidable3d;
-import rcs.feyn.three.collision.CollisionDetection3d;
-import rcs.feyn.three.collision.CollisionHandler3d;
-import rcs.feyn.three.collision.CollisionInfo3d;
-import rcs.feyn.three.collision.CollisionUtils3d;
-import rcs.feyn.three.collision.InelasticCollision3d;
-import rcs.feyn.three.entities.models.CollidableModel3d;
-import rcs.feyn.three.entities.models.Model3dFactory;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.ConstantLightSource3d;
-import rcs.feyn.utils.XORShift;
-import rcs.feyn.utils.struct.FeynArray;
-import rcs.feyn.utils.struct.FeynCollection;
-import rcs.feyn.math.MathConsts;
-import rcs.feyn.math.Vector3d;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.three.collision.BoundingBox3d;
+import rcs.mulder.three.collision.BoundingSphere3d;
+import rcs.mulder.three.collision.Collidable3d;
+import rcs.mulder.three.collision.CollisionDetection3d;
+import rcs.mulder.three.collision.CollisionHandler3d;
+import rcs.mulder.three.collision.CollisionInfo3d;
+import rcs.mulder.three.collision.CollisionUtils3d;
+import rcs.mulder.three.collision.InelasticCollision3d;
+import rcs.mulder.three.entities.models.CollidableModel3d;
+import rcs.mulder.three.entities.models.Model3dFactory;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.ConstantLightSource3d;
+import rcs.mulder.utils.XORShift;
+import rcs.mulder.utils.struct.MulderArray;
+import rcs.mulder.utils.struct.MulderCollection;
+import rcs.mulder.math.MathConsts;
+import rcs.mulder.math.Vector3d;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.*;
+import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class Gumballs extends Demo3d {  
 
@@ -34,7 +34,7 @@ public class Gumballs extends Demo3d {
   
   private static final int NUM_BALLS = 100;
 
-  private final FeynCollection<CollidableModel3d> spheres = new FeynArray<>(NUM_BALLS);
+  private final MulderCollection<CollidableModel3d> spheres = new MulderArray<>(NUM_BALLS);
  
   private final CollidableModel3d cube = (CollidableModel3d) Model3dFactory
       .cube(2)
@@ -53,7 +53,7 @@ public class Gumballs extends Demo3d {
   protected void initialize() {
     super.initialize();
     
-    setBackgroundColor(FeynColor.superDarkGray);
+    setBackgroundColor(MulderColor.superDarkGray);
     wzc.setAmount(0.2);
     
     XORShift xor = XORShift.getInstance();
@@ -71,7 +71,7 @@ public class Gumballs extends Demo3d {
            xor.randomDouble(-0.5, 0.5), 
            xor.randomDouble(-0.51, 0.5));
       
-      sphere.setColorToAllFaces(FeynColor.randomColor());
+      sphere.setColorToAllFaces(MulderColor.randomColor());
       sphere.setMass(radius);
 
       Model3dUtils.setOptions(
@@ -82,19 +82,19 @@ public class Gumballs extends Demo3d {
       spheres.add(sphere);
     }
 
-    cube.setColorToAllFaces(new FeynColor(255, 255, 255, 255));
+    cube.setColorToAllFaces(new MulderColor(255, 255, 255, 255));
     cube.getOuterBoundingObject().inverse();
     Model3dUtils.setOptions(
         cube,
         Set.of(meshOnly), 
         Set.of(cullIfBackface, flatShaded, gouraudShaded));
     
-    FeynRuntime.getRepository().add(cube);
-    FeynRuntime.getRepository().add(spheres);
+    MulderRuntime.getRepository().add(cube);
+    MulderRuntime.getRepository().add(spheres);
 
     camera.translate(0, 0, 2.5);
-    FeynRuntime.addDiffuseLightSource(new ConstantLightSource3d(0.5));
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(0.8));
+    MulderRuntime.addDiffuseLightSource(new ConstantLightSource3d(0.5));
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(0.8));
   }
 
   @Override
@@ -190,7 +190,7 @@ public class Gumballs extends Demo3d {
   }
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(800, 800, "Gumballs", true, false);
+    var frame = new MulderFrame(800, 800, "Gumballs", true, false);
     var demo = new Gumballs();
     frame.add("Center", demo);
     frame.setVisible(true);

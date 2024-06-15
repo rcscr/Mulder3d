@@ -1,37 +1,37 @@
 package demo3d;
 
-import static rcs.feyn.three.render.RenderOptions3d.Option.flatShaded;
-import static rcs.feyn.three.render.RenderOptions3d.Option.gouraudShaded;
+import static rcs.mulder.three.render.RenderOptions3d.Option.flatShaded;
+import static rcs.mulder.three.render.RenderOptions3d.Option.gouraudShaded;
 
 import java.awt.event.KeyEvent;
 import java.io.Serial;
 import java.util.Set;
 
-import rcs.feyn.color.FeynColor;
-import rcs.feyn.gui.FeynFrame;
-import rcs.feyn.math.MathConsts;
-import rcs.feyn.math.Matrices;
-import rcs.feyn.math.Vector3d;
-import rcs.feyn.three.collision.BoundingSphere3d;
-import rcs.feyn.three.collision.CollisionHandler3d;
-import rcs.feyn.three.collision.CollisionInfo3d;
-import rcs.feyn.three.collision.CollisionUtils3d;
-import rcs.feyn.three.entities.Rotation3d;
-import rcs.feyn.three.entities.models.CollidableModel3d;
-import rcs.feyn.three.entities.models.Model3d;
-import rcs.feyn.three.entities.models.Model3dFace;
-import rcs.feyn.three.entities.models.Model3dFactory;
-import rcs.feyn.three.entities.models.Model3dUtils;
-import rcs.feyn.three.entities.primitives.Point3d;
-import rcs.feyn.three.gfx.TextureRaster;
-import rcs.feyn.three.kernel.FeynRuntime;
-import rcs.feyn.three.optics.AmbientLightSource3d;
-import rcs.feyn.three.optics.ConstantLightSource3d;
-import rcs.feyn.utils.AnimationTimer;
-import rcs.feyn.utils.XORShift;
-import rcs.feyn.utils.struct.FeynArray;
-import rcs.feyn.utils.struct.FeynCollection;
-import rcs.feyn.utils.struct.FeynLinkedList;
+import rcs.mulder.color.MulderColor;
+import rcs.mulder.gui.MulderFrame;
+import rcs.mulder.math.MathConsts;
+import rcs.mulder.math.Matrices;
+import rcs.mulder.math.Vector3d;
+import rcs.mulder.three.collision.BoundingSphere3d;
+import rcs.mulder.three.collision.CollisionHandler3d;
+import rcs.mulder.three.collision.CollisionInfo3d;
+import rcs.mulder.three.collision.CollisionUtils3d;
+import rcs.mulder.three.entities.Rotation3d;
+import rcs.mulder.three.entities.models.CollidableModel3d;
+import rcs.mulder.three.entities.models.Model3d;
+import rcs.mulder.three.entities.models.Model3dFace;
+import rcs.mulder.three.entities.models.Model3dFactory;
+import rcs.mulder.three.entities.models.Model3dUtils;
+import rcs.mulder.three.entities.primitives.Point3d;
+import rcs.mulder.three.gfx.TextureRaster;
+import rcs.mulder.three.kernel.MulderRuntime;
+import rcs.mulder.three.optics.AmbientLightSource3d;
+import rcs.mulder.three.optics.ConstantLightSource3d;
+import rcs.mulder.utils.AnimationTimer;
+import rcs.mulder.utils.XORShift;
+import rcs.mulder.utils.struct.MulderArray;
+import rcs.mulder.utils.struct.MulderCollection;
+import rcs.mulder.utils.struct.MulderLinkedList;
 
 public class SpaceShooter extends Demo3d {
 
@@ -43,10 +43,10 @@ public class SpaceShooter extends Demo3d {
   
   private final XORShift xorShift = XORShift.getInstance();
 
-  private final FeynCollection<Point3d> stars = new FeynArray<>(10_000);
-  private final FeynCollection<CollidableModel3d> rocks = new FeynLinkedList<>();
-  private final FeynCollection<Model3d> shards = new FeynLinkedList<>();
-  private final FeynCollection<CollidableModel3d> projectiles = new FeynLinkedList<>();
+  private final MulderCollection<Point3d> stars = new MulderArray<>(10_000);
+  private final MulderCollection<CollidableModel3d> rocks = new MulderLinkedList<>();
+  private final MulderCollection<Model3d> shards = new MulderLinkedList<>();
+  private final MulderCollection<CollidableModel3d> projectiles = new MulderLinkedList<>();
   
   private final AnimationTimer addRockTimer = new AnimationTimer(this::addNewRocks, 500);
   
@@ -56,7 +56,7 @@ public class SpaceShooter extends Demo3d {
   @Override
   public void initialize() {
     super.initialize();
-    super.setBackgroundColor(FeynColor.black);
+    super.setBackgroundColor(MulderColor.black);
     wzc.setAmount(0);
     
     camera.translate(0, 5, 0);
@@ -71,27 +71,27 @@ public class SpaceShooter extends Demo3d {
       }
       
       if (xorShift.randomDouble() > 0.1) {
-        star.setColor(FeynColor.darkGray);
+        star.setColor(MulderColor.darkGray);
       } else if (xorShift.randomDouble() > 0.5) {
-        star.setColor(FeynColor.hotPink);
+        star.setColor(MulderColor.hotPink);
       } else if (xorShift.randomDouble() > 0.5) {
-        star.setColor(FeynColor.blue);
+        star.setColor(MulderColor.blue);
       } else {
-        star.setColor(FeynColor.white);
+        star.setColor(MulderColor.white);
       }
       
       stars.add(star);
     }
 
-    FeynRuntime.getRepository().add(stars);
-    FeynRuntime.getRepository().add(rocks);
-    FeynRuntime.getRepository().add(shards);
-    FeynRuntime.getRepository().add(projectiles);
+    MulderRuntime.getRepository().add(stars);
+    MulderRuntime.getRepository().add(rocks);
+    MulderRuntime.getRepository().add(shards);
+    MulderRuntime.getRepository().add(projectiles);
     
     var lightSource = new ConstantLightSource3d(1);
     lightSource.setPosition(0, 10, 0);
-    FeynRuntime.addDiffuseLightSource(lightSource);
-    FeynRuntime.setAmbientLight(new AmbientLightSource3d(0.1)); 
+    MulderRuntime.addDiffuseLightSource(lightSource);
+    MulderRuntime.setAmbientLight(new AmbientLightSource3d(0.1));
   }
 
   @Override
@@ -132,7 +132,7 @@ public class SpaceShooter extends Demo3d {
     Vector3d position = new Vector3d(0, 0, 0);
     Vector3d velocity = new Vector3d(-xDotProd, 0, -zDotProd).normalizeLocal().mul(2);
     CollidableModel3d projecile = (CollidableModel3d) Model3dFactory.pyramid(0.5, 5, 5)
-        .setColor(FeynColor.orangeRed)
+        .setColor(MulderColor.orangeRed)
         .setOuterBoundingObject(new BoundingSphere3d(0.5))
         .setPosition(position)
         .setVelocity(velocity)
@@ -156,7 +156,7 @@ public class SpaceShooter extends Demo3d {
         .setOuterBoundingObject(new BoundingSphere3d(radius))
         .setPosition(new Vector3d(xorShift.randomDouble(-10, 10), 0, -200))
         .setVelocity(new Vector3d(0, 0, 0.5))
-        .setColor(FeynColor.rosyBrown)
+        .setColor(MulderColor.rosyBrown)
         .setRotation(Rotation3d.spin(Vector3d.getRandomUnitVector(), 0.05))
         .build();
     
@@ -253,7 +253,7 @@ public class SpaceShooter extends Demo3d {
   }
 
   public static void main(String[] args) {
-    var frame = new FeynFrame(1000, 800, "Space Shooter Demo", true, false);
+    var frame = new MulderFrame(1000, 800, "Space Shooter Demo", true, false);
     var demo = new SpaceShooter();
     frame.add("Center", demo);
     frame.setVisible(true);
