@@ -14,7 +14,7 @@ Named after Special Agent Fox Mulder from the X-Files, for his relentless search
 
 > <b>Scully</b> : *You're in the basement because they're afraid of you, of your relentlessness, and because they know that they could drop you in the middle of the desert and tell you the truth is out there, and you'd ask them for a shovel.*
 
-`Mulder3d` represents my relentless attempt at developing a working 3D graphics engineer. In those glory college days, I would stay up all night coding, and only go to sleep when the birds began singing.
+`Mulder3d` represents my relentless attempt at developing a working 3D graphics engine. In those glory college days, I would stay up all night programming, and go to sleep when the birds began singing, only to continue dreaming in code.
 
 > <b>Scully</b> : Don't you ever just want to stop? Get out of the damn car... settle down and live something approaching a normal life?
 
