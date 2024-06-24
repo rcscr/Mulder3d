@@ -6,8 +6,8 @@ import rcs.mulder.math.Vector3d;
 
 public class Plane3d implements Movable3d, Transformable3d {
   
-  private Vector3d origin;
-  private Vector3d normal;
+  private final Vector3d origin;
+  private final Vector3d normal;
   private double d; 
 
   public static Plane3d xyPlane() {
@@ -121,14 +121,12 @@ public class Plane3d implements Movable3d, Transformable3d {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof Plane3d)) {
+    if (!(obj instanceof Plane3d that)) {
       return false;
     }
-    
-    var that = (Plane3d) obj;
 
     return this.origin.equals(that.origin) &&
-           this.normal.equals(that.normal);
+         this.normal.equals(that.normal);
   }
 
   @Override

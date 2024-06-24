@@ -84,13 +84,11 @@ public class Ray3d implements Movable3d, Transformable3d {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof Ray3d)) {
+    if (!(obj instanceof Ray3d that)) {
       return false;
     }
-    
-    var that = (Ray3d) obj;
-    
-    return this.origin.equals(that.origin) && 
+
+    return this.origin.equals(that.origin) &&
            this.normal.equals(that.normal);
   }
 

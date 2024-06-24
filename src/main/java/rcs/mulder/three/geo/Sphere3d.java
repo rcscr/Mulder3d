@@ -6,8 +6,8 @@ import rcs.mulder.math.Vector3d;
 
 public class Sphere3d implements Movable3d, Transformable3d {
 
-  protected Vector3d point;
-  protected double   radius;
+  protected final Vector3d point;
+  protected double radius;
 
   public Sphere3d(Vector3d point, double radius) {
     this.point = new Vector3d(point);
@@ -65,11 +65,9 @@ public class Sphere3d implements Movable3d, Transformable3d {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof Sphere3d)) {
+    if (!(obj instanceof Sphere3d that)) {
       return false;  
-    }  
-    
-    var that = (Sphere3d) obj;
+    }
 
     return this.point.equals(that.point) &&
            this.radius == that.radius;

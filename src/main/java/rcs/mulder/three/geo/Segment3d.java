@@ -5,8 +5,8 @@ import rcs.mulder.math.Vector3d;
 
 public class Segment3d implements Movable3d, Transformable3d {
   
-  private Vector3d a;
-  private Vector3d b;
+  private final Vector3d a;
+  private final Vector3d b;
 
   public Segment3d(Vector3d a, Vector3d b) {
     this.a = new Vector3d(a);
@@ -100,13 +100,11 @@ public class Segment3d implements Movable3d, Transformable3d {
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof Segment3d)) {
+    if (!(obj instanceof Segment3d that)) {
       return false;
-    }  
-    
-    var that = (Segment3d) obj;
-    
-    return this.a.equals(that.a) && 
+    }
+
+    return this.a.equals(that.a) &&
            this.b.equals(that.b);
   }
 
