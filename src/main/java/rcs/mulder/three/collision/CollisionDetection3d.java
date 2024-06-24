@@ -9,11 +9,11 @@ public class CollisionDetection3d {
     throw new AssertionError();
   }
   
-  public static final CollisionInfo3d computeCollision(Collidable3d c1, Collidable3d c2) {
+  public static CollisionInfo3d computeCollision(Collidable3d c1, Collidable3d c2) {
     return c1.getOuterBoundingObject().computeCollision(c2.getOuterBoundingObject());
   }
   
-  public static final CollisionInfo3d computeCollision(ComplexCollidable3d cc1, ComplexCollidable3d cc2) {
+  public static CollisionInfo3d computeCollision(ComplexCollidable3d cc1, ComplexCollidable3d cc2) {
     if (null == cc1.getOuterBoundingObject().computeCollision(cc2.getOuterBoundingObject())) {
       return null;
     }
@@ -28,11 +28,11 @@ public class CollisionDetection3d {
     return null;
   }
   
-  public static final CollisionInfo3d computeCollision(Collidable3d c, ComplexCollidable3d cc) {
+  public static CollisionInfo3d computeCollision(Collidable3d c, ComplexCollidable3d cc) {
     return computeCollision(cc, c);
   }
   
-  public static final CollisionInfo3d computeCollision(ComplexCollidable3d cc, Collidable3d c) {
+  public static CollisionInfo3d computeCollision(ComplexCollidable3d cc, Collidable3d c) {
     var bo1 = c.getOuterBoundingObject();
     if (null == cc.getOuterBoundingObject().computeCollision(bo1)) {
       return null;
