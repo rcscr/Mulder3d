@@ -13,10 +13,6 @@ public abstract class AnimationCanvas3d extends AbstractAnimationCanvas {
   
   private final RenderKernel renderKernel = MulderRuntime.getRenderKernel();
 
-  static {
-    new MulderRuntime();
-  }
-
   public AnimationCanvas3d() {
     super(new Graphics3dSynchronized(new Raster(0, 0)));
   }
