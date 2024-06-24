@@ -24,7 +24,6 @@ public class BoxOfRain extends Demo3d {
   
   private final XORShift xorShift = XORShift.getInstance();
   
-  // todo: implement checking collision against a Plane3d
   private final Grid ground = new Grid(10, 10);
   
   private final MulderCollection<Line3d> raindrops = new MulderLinkedList<>();
@@ -129,7 +128,7 @@ public class BoxOfRain extends Demo3d {
     splashes.forEach(splash -> {
       splash.accelerate(0, -0.01, 0);
       splash.animate();
-      if (splash.getPosition().y() < 0) {
+      if (ground.pointIsBehind(splash.getCenter())) {
         splash.destroy();
       }
     });

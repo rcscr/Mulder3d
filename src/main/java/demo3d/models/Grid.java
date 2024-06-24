@@ -1,9 +1,12 @@
 package demo3d.models;
 
+import rcs.mulder.math.Matrix44;
 import rcs.mulder.three.entities.models.Model3d;
 import rcs.mulder.three.entities.models.Model3dFace;
 import rcs.mulder.three.entities.models.Model3dTexturedFace;
 import rcs.mulder.three.entities.models.Model3dVertices;
+import rcs.mulder.three.geo.GeoUtils3d;
+import rcs.mulder.three.geo.Plane3d;
 import rcs.mulder.three.gfx.TextureRaster;
 import rcs.mulder.color.MulderColor;
 import rcs.mulder.math.MathUtils;
@@ -12,7 +15,9 @@ import rcs.mulder.math.Vector3d;
 import static rcs.mulder.three.render.RenderOptions3d.Option.*;
 
 public class Grid extends Model3d {
-  
+
+  private Plane3d plane;
+
   public Grid(double xDim, double zDim) {
     this(xDim, zDim, 1);
   }
@@ -20,11 +25,29 @@ public class Grid extends Model3d {
   public Grid(double xDim, double zDim, int count) {
     setVertices(xDim, zDim, count);
     setFaces(count);
+    setPlane();
   }
 
   public Grid(double xDim, double zDim, int count, TextureRaster texture) {
     setVertices(xDim, zDim, count);
     setFaces(count, texture);
+    setPlane();
+  }
+
+  @Override
+  public synchronized void translate(Vector3d v3d) {
+    super.translate(v3d);
+    plane.translate(v3d);
+  }
+
+  @Override
+  public synchronized void transform(Matrix44 m44) {
+    super.transform(m44);
+    plane.transform(m44);
+  }
+
+  public boolean pointIsBehind(Vector3d point) {
+    return point.sub(this.getCenter()).dotProd(this.plane.getNormal()) < 0;
   }
   
   private void setVertices(double xDim, double zDim, int count) {
@@ -67,5 +90,9 @@ public class Grid extends Model3d {
         j++;
       }
     }
+  }
+
+  private void setPlane() {
+    this.plane = new Plane3d(this.position, GeoUtils3d.getNormal(vertices.getVertices()));
   }
 }
