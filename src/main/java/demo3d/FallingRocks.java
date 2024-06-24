@@ -88,7 +88,7 @@ public class FallingRocks extends Demo3d {
   private void animateRocks() {
     rocks.forEach(rock -> {
       rock.spin(Vector3d.Z_AXIS, 0.01);
-      if (rock.getPosY() - rockRadius < 0) {
+      if (ground.pointIsBehind(rock.getPosition())) {
         rock.destroy();
         rock.setPosition(rock.getPosX(), rockRadius + 0.1, rock.getPosZ());
         addNewShards(rock);
@@ -108,12 +108,15 @@ public class FallingRocks extends Demo3d {
           }
         }
       } else {
-        if (shard.getPosition().y() < 0.05) {
-          shard.setPosY(0.04);
-          shard.setVelocity(0, 0, 0);
-        } else { 
-          shard.accelerate(0, -0.01, 0);
-          shard.animate();
+        if (!((Boolean) shard.getMetadata().getOrDefault("stopped", false))) {
+          if (ground.pointIsBehind(shard.getPosition())) {
+            shard.setPosY(0.04);
+            shard.setVelocity(0, 0, 0);
+            shard.getMetadata().put("stopped", true);
+          } else {
+            shard.accelerate(0, -0.01, 0);
+            shard.animate();
+          }
         }
       }
     });

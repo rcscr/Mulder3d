@@ -93,6 +93,10 @@ public class Grid extends Model3d {
   }
 
   private void setPlane() {
-    this.plane = new Plane3d(this.position, GeoUtils3d.getNormal(vertices.getVertices()));
+    var vertexA = vertices.getVertices()[faces[0].getIndices()[0]];
+    var vertexB = vertices.getVertices()[faces[0].getIndices()[1]];
+    var vertexC = vertices.getVertices()[faces[0].getIndices()[2]];
+    var normal = GeoUtils3d.getNormal(vertexA, vertexB, vertexC);
+    this.plane = new Plane3d(this.position, normal);
   }
 }
