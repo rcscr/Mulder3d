@@ -25,9 +25,9 @@ public class RenderUtils {
       int ia = 0;
       int ib = i;
       int ic = i+1;
-      T va = objects[0];
-      T vb = objects[i];
-      T vc = objects[i+1];
+      T va = objects[ia];
+      T vb = objects[ib];
+      T vc = objects[ic];
       consumer.accept(va, vb, vc, ia, ib, ic);
     }    
   }
