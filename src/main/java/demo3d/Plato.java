@@ -76,7 +76,7 @@ public class Plato extends Demo3d {
       Model3d solid = solids[i];
       MulderRuntime.getRepository().add(solid);
       solid.translate(Vector3d.fromSpherical(3, i*deg, 0));
-      solid.setRotation(Rotation3d.spin(Vector3d.Y_AXIS, 1.5 * MathConsts.DEGREES_TO_RADIANS));
+      solid.setRotation(Rotation3d.yaw(1.5 * MathConsts.DEGREES_TO_RADIANS));
       Model3dUtils.setOptions(
           solid, 
           Set.of(flatShaded), 
