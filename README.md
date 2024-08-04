@@ -1,7 +1,5 @@
 ## Mulder3d
 
-(Formerly known as Feyn3d - currently in the process of rebranding it.)
-
 A polygon-based real-time 3D graphics engine in Java.
 
 ### Motivation
